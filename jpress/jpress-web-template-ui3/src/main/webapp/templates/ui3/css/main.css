@@ -245,6 +245,18 @@
   color:#006DC0;
 }
 
+.social-icons ul li a:hover .fa-qq {
+  color:#006DC0;
+}
+
+.social-icons ul li a:hover .fa-wechat {
+  color:#006DC0;
+}
+
+.social-icons ul li a:hover .fa-weibo {
+  color:#006DC0;
+}
+
 .social-icons ul li a:hover,
 .social-icons ul li a:focus{  
   background: none;
@@ -2501,9 +2513,27 @@ span.stButton_gradient,
   transition: all 0.3s ease-in-out;
 }
 
-#error-page i.fa-facebook:hover, 
+#error-page i.fa-qq:hover,
+#coming-soon i.fa-qq:hover{
+  background-color:transparent;
+  color: #314A87;
+  border-color:#314A87;
+}
+#error-page i.fa-wechat:hover,
+#coming-soon i.fa-wechat:hover{
+  background-color:transparent;
+  color: #314A87;
+  border-color:#314A87;
+}
+#error-page i.fa-facebook:hover,
 #coming-soon i.fa-facebook:hover{
-  background-color:transparent;  
+  background-color:transparent;
+  color: #314A87;
+  border-color:#314A87;
+}
+#error-page i.fa-weibo:hover,
+#coming-soon i.fa-weibo:hover{
+  background-color:transparent;
   color: #314A87;
   border-color:#314A87;
 }
