@@ -1,11 +1,11 @@
 <#macro script_import>
-</#macro> 
+</#macro>
 <#macro script>
-</#macro> 
+</#macro>
 <#macro css_import>
-</#macro> 
+</#macro>
 <#macro css>
-</#macro> 
+</#macro>
 <#macro layout>
 <!DOCTYPE html>
 <html>
@@ -80,9 +80,15 @@
     </div>
   </div>
 </header>
-<#nested> 
+<#nested>
 <footer class="footer x-sm-footer">
-  <p>${OPTION('web_copyright')!'暂未填写版权信息'}</p>
+    <div>网站地图</div>
+    <div>
+        <a href="http://ss.panzijiang.com">盘子酱|ss</a>
+        <a href="http://panzi.gouwuke.com">盘子购</a>
+        <a href="http://tools.panzijiang.com">盘子酱工具</a>
+    </div>
+    <p>${OPTION('web_copyright')!'暂未填写版权信息'}</p>
 </footer>
 <div style="display: none;">
 ${OPTION('jpblog_statistical_code')!}

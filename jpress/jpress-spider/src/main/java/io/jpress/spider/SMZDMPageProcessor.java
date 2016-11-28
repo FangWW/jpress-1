@@ -11,6 +11,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
 import us.codecraft.webmagic.selector.Json;
 
+import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,10 +26,13 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
     //http://m.smzdm.com/search/ajax_search_list?article_date=2016-11-01+10%3A17%3A54&type=tag&search_key=%E7%A5%9E%E4%BB%B7%E6%A0%BC&channel=youhui
     //http://m.smzdm.com/search/ajax_search_list?type=fenlei&search_key=gehuhuazhuang&channel=youhui&article_date=2016-11-02+15%3A25%3A36
     private Log logger = Log.getLog(getClass());
-    public static final String SMZDM_URL = "http://m.smzdm.com/search/ajax_search_list?type=fenlei&search_key=gehuhuazhuang&channel=youhui&article_date=";
-    //    public static final String SMZDM_URL = "http://m.smzdm.com/ajax_home_list_show?time_sort=";
+    public static final String SMZDM_GHMZ = "http://m.smzdm.com/search/ajax_search_list?type=fenlei&search_key=gehuhuazhuang";
+    public static final String SMZDM_URL = SMZDM_GHMZ + "&channel=youhui&article_date=";
+    public static final String SMZDM_URL_HAITAO = SMZDM_GHMZ + "&channel=haitao&article_date=";
+    //    public static final String YQF_URL = "http://m.smzdm.com/ajax_home_list_show?time_sort=";
     public static final String SMZDM_P_URL = "http://m.smzdm.com/p/";
-    private Site site = Site.me().setRetryTimes(3).setSleepTime(1000 * 60 * 2).setRetrySleepTime(1000 * 60);
+
+    private Site site = Site.me().setRetryTimes(3).setSleepTime(1000 * 30).setRetrySleepTime(1000 * 60);
     private int count;
     private int page_size = 20;
     public static final int RECYCLE_NUM = 1;
@@ -38,7 +42,7 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
     public void process(Page page) {
         synchronized (SMZDMPageProcessor.class) {
             String url = page.getUrl().toString();
-            if (url != null && url.startsWith(SMZDM_URL)) {
+            if (url != null && url.startsWith(SMZDM_GHMZ)) {
                 Json json = page.getJson();
                 String time_s = JsonPath.read(json.get(), "$.article_date");
                 String message = JsonPath.read(json.get(), "$.message");
@@ -60,6 +64,7 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
                     if (count < RECYCLE_NUM) {
                         page.addTargetRequest(SMZDM_URL + URLEncoder.encode(time_s));
                     } else {
+                        page.addTargetRequest(SMZDM_URL_HAITAO + URLEncoder.encode(format.format(Calendar.getInstance().getTime())));
                         page.addTargetRequest(getUrl());
                         count = 0;
                     }
@@ -80,13 +85,23 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
                 List<String> detail = html.xpath("//div[@class='details-title']/div[@class='title']/text()" +
                         "|//div[@class='details-title']/div[@class='title']/span/text()" +
                         "|//div[@class='details-title']/a/@href" +
+                        "|//header[@class='head_banner']/text()" +
                         "|//div[@class='owl-carousel']/div/img/@src" +
                         "|//article/p").all();
                 List imgs = new ArrayList<String>();
                 ContentSpider contentSpider = new ContentSpider();
                 contentSpider.setImg(imgs);
+
+                List<BigInteger> ids = new ArrayList<>();
+                ids.add(BigInteger.valueOf(1));//tag  数据库 分类 id
+                ids.add(BigInteger.valueOf(2));//categroy  数据库 分类 id
+
                 for (int i = 0, size = detail.size(); i < size; i++) {
                     String str = detail.get(i);
+                    str.replaceAll("值友", "");
+                    str.replaceAll("什么值得买", "");
+                    str.replaceAll("SMZDM", "");
+                    str.replaceAll("smzdm", "");
                     switch (i) {
                         case 0://标题
                             contentSpider.setTitle(str);
@@ -97,6 +112,11 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
                         case 2://链接
                             contentSpider.setLink(str);
                             break;
+                        case 3://标题
+                            if (str.trim().startsWith("海淘")) {
+                                ids.add(BigInteger.valueOf(3));//数据库 分类 id
+                            }
+                            break;
                         default://图片&文本
                             if (str.startsWith("http")) {
                                 imgs.add(str);
@@ -106,7 +126,11 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
                             break;
 
                     }
+
+
+
                     if (i == size - 1) {
+                        contentSpider.setIds(ids);
                         MessageKit.sendMessage(Actions.SPIDER_GET, contentSpider);
                     }
                 }
@@ -130,6 +154,12 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
 
     @Override
     public void spriderStart() {
+
+//        List<String[]> httpProxyPool = new ArrayList<>();
+//        httpProxyPool.add(new String[]{"101.53.101.172", "9999"});
+//        getSite().setHttpProxyPool(httpProxyPool);
+
+
         List spiderListener = new ArrayList<SpiderListener>();
         spiderListener.add(new SpiderListener() {
             @Override
@@ -143,8 +173,9 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
                 mSpider.addRequest(new Request(getUrl()));
             }
         });
-        mSpider = Spider.create(this).addUrl(getUrl()).setSpiderListeners(spiderListener).thread(1);
-//        mSpider = Spider.create(this).addUrl(SMZDM_URL + System.currentTimeMillis() / 1000).thread(1);
+        mSpider = Spider.create(this).addUrl(getUrl(),
+                SMZDM_URL_HAITAO + URLEncoder.encode(format.format(Calendar.getInstance().getTime()))).setSpiderListeners(spiderListener).thread(1);
+//        mSpider = Spider.create(this).addUrl(YQF_URL + System.currentTimeMillis() / 1000).thread(1);
         mSpider.run();
     }
 
@@ -169,3 +200,5 @@ public class SMZDMPageProcessor implements PageProcessor, SpriderInterface {
         return mSpider != null && mSpider.getStatus() == Spider.Status.Running;
     }
 }
+
+

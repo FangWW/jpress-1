@@ -1,5 +1,6 @@
 package io.jpress.spider.bean;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -11,6 +12,16 @@ public class ContentSpider {
     private String title;
     private String subTitle;
     private String link;
+    // 文字 tag和categroy
+    private List<BigInteger> ids;
+
+    public List<BigInteger> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<BigInteger> ids) {
+        this.ids = ids;
+    }
 
     public List<String> getImg() {
         return img;

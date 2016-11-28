@@ -1,3 +1,5 @@
+
+
 package io.jpress.listener;
 
 import com.jfinal.plugin.activerecord.Page;
@@ -83,12 +85,9 @@ public class SpiderListener implements MessageListener {
             }
             content.updateCommentCount();
 
-            List<BigInteger> ids = new ArrayList<>();
-            ids.add(BigInteger.valueOf(1));//tag
-            ids.add(BigInteger.valueOf(2));//categroy
-            MappingQuery.me().doBatchUpdate(content.getId(), ids.toArray(new BigInteger[0]));
+            MappingQuery.me().doBatchUpdate(content.getId(), contentSpider.getIds().toArray(new BigInteger[0]));
 
-            MessageKit.sendMessage(Actions.CONTENT_COUNT_UPDATE, ids.toArray(new BigInteger[] {}));
+            MessageKit.sendMessage(Actions.CONTENT_COUNT_UPDATE, contentSpider.getIds().toArray(new BigInteger[] {}));
 
             if (size >= PAGESIZE) {
                 mContent.remove(PAGESIZE - 1);
@@ -116,3 +115,5 @@ public class SpiderListener implements MessageListener {
 //showImg('http://y.zdmimg.com/201611/03/581ac324d9598750.png_d480.jpg');
 //</script>
 //<p></p><p>每个月总有那么几天心情不畅，必需品都囤够了吗？现在京东有<a href="http://go.smzdm.com/1a10d0d84b314bab/cb_aa_yh_113_6578151_750_0_0" target="_blank" onclick="gtm();">女性护理用品部分满199减100活动</a>，花王、高洁丝、护舒宝、ABC都有参加活动，虽然不是全场，但是凑单满减后也要比超市便宜一半了，刚需不要非得等到历史低价再入，到时候要用现买可就麻烦了，男同胞们展现细心程度的时候到了昂。 </p><p> </p><p> <br></p><p> <br></p><p> <br></p><p> <br></p><p> <br></p><p> <br></p><p> </p><p> <br></p><p><br></p><p><br></p><p><span class="img_desc"><img itemprop="image" alt="京东 女性护理专场" src="http://y.zdmimg.com/201611/03/581ac401d6cc33314.png_e600.jpg" src1="http://y.zdmimg.com/201611/03/581ac401d6cc33314.png_e600.jpg" src2="http://y.zdmimg.com/201611/03/581ac401d6cc33314.png_e600.jpg" _size="416061" title="" data-title=""></span></p>
+
+

@@ -5,6 +5,5 @@ Sitemap: /sitemap
 User-agent: *
 Crawl-delay: 10
 
-Disallow: /admin/
 
 ### END ###
