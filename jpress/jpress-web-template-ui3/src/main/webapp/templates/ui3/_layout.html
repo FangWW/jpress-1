@@ -65,42 +65,42 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand" href="index.html">
-                    <h1><img src="${CTPATH}/images/logo.png" alt="logo"></h1>
+                <a class="navbar-brand" href="${CPATH}/">
+                    <h1><img src="${CTPATH}/images/logo.png" alt="logo"><a href="${CPATH}/">${WEB_NAME!}</a></h1>
                 </a>
 
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="${CPATH}/">首页</a></li>
 
                     <#if "/" == REQUEST.requestURI!>
-                        <li class="active"><a href="${CPATH}/">首页</a></li>
+                        <li class="active">
+                        <#else>
+                        <li>
                     </#if>
+                    <a href="${CPATH}/">首页</a></li>
                     <@jp.menus>
                     <#list menus as menu>
-
-
-                        <li class="dropdown"><a href="${menu.url!}">${menu.title!} <i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a href="aboutus.html">About</a></li>
-                            </ul>
-                        </li>
-
                         <#if menu.isActive() >
-                        <li class="dropdown active"><a href="blog.html">Blog <i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a class="active" href="blog.html">Blog Default</a></li>
-                                <li><a href="blogtwo.html">Timeline Blog</a></li>
-                                <li><a href="blogone.html">2 Columns + Right Sidebar</a></li>
-                                <li><a href="blogthree.html">1 Column + Left Sidebar</a></li>
-                                <li><a href="blogfour.html">Blog Masonary</a></li>
-                                <li><a href="blogdetails.html">Blog Details</a></li>
-                            </ul>
-                        </li>
+                            <!--<li>-->
+                            <li class="dropdown active">
+                        <#else>
+                            <li class="dropdown">
                         </#if>
+                            <a href="${menu.url!}">${menu.title!} <i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a class="active" href="blog.html">Blog Default</a></li>
+                                    <li><a href="blogtwo.html">Timeline Blog</a></li>
+                                    <li><a href="blogone.html">2 Columns + Right Sidebar</a></li>
+                                    <li><a href="blogthree.html">1 Column + Left Sidebar</a></li>
+                                    <li><a href="blogfour.html">Blog Masonary</a></li>
+                                    <li><a href="blogdetails.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                        </li>
                     </#list>
-                </@jp.menus>
+                    </@jp.menus>
+
                 </ul>
             </div>
             <div class="search">
@@ -120,54 +120,14 @@
 
 
 <header class="x-layout-100">
-  <!-- -->
-  <div class="x-layout-100 jblog-link">
-    <div class="jblog-link-content">
-      <ul class="jblog-link-content-left">
-        <li class="x-part-border-left"><a class="x-padding-left-rem1 x-padding-right-rem1" href="${CPATH!}/">首页</a></li>
-        <li class="x-padding-left-rem1 x-padding-right-rem1"><a href="${CPATH!}/about">联系我们</a></li>
-      </ul>
-      <ul class="jblog-link-content-right">
-        <li><a href="#"><i class="fa fa-weibo" aria-hidden="true"></i></a></li>
-        <li><a href="#"><i class="fa fa-qq" aria-hidden="true"></i></a></li>
-        <li class="x-part-border-left"><a href="#"><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
-      </ul>
-    </div>
-  </div>
-  <!-- -->
   <div class="x-layout-100 jblog-link-logo">
     <div class="jblog-link-logo-content">
-      <div class="jblog-link-logo-image"><a href="${CPATH}/">${WEB_NAME!}</a></div>
+      <div class="jblog-link-logo-image"></div>
       <div class="jblog-link-logo-adv">
 	      <a href="${OPTION('jpblog_banner_url')!'#'}">
 	      	<img src="${CPATH}${OPTION('jpblog_banner_image')!TPATH+'/assets/images/banner.jpg'}"/>
 	      </a>
       </div>
-    </div>
-  </div>
-  <!-- -->
-  <div class="jblog-nav">
-    <div class="jblog-nav-content">
-      <ul>
-      	<li><a href="${CPATH}/">首页
-      	<#if "/" == REQUEST.requestURI!>
-      	<span class="x-a-border"></span>
-      	</#if>
-      	</a>
-      	</li>
-      	<@jp.menus>
-        	<#list menus as menu>
-        		<li >
-        		<a  href="${menu.url!}">
-        		${menu.title!}
-        		<#if menu.isActive() >
-        			<span class="x-a-border"></span>
-        		</#if>
-        		</a>
-        		</li>
-        	</#list>
-        </@jp.menus>
-      </ul>
     </div>
   </div>
 </header>
@@ -177,14 +137,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center bottom-separator">
-                    <img src="${CPATH}/images/home/under.png" class="img-responsive inline" alt="">
+                    <img src="${CTPATH}/images/home/under.png" class="img-responsive inline" alt="">
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="testimonial bottom">
                         <h2>Testimonial</h2>
                         <div class="media">
                             <div class="pull-left">
-                                <a href="#"><img src="${CPATH}/images/home/profile1.png" alt=""></a>
+                                <a href="#"><img src="${CTPATH}/images/home/profile1.png" alt=""></a>
                             </div>
                             <div class="media-body">
                                 <blockquote>Nisi commodo bresaola, leberkas venison eiusmod bacon occaecat labore tail.</blockquote>
@@ -193,7 +153,7 @@
                         </div>
                         <div class="media">
                             <div class="pull-left">
-                                <a href="#"><img src="${CPATH}/images/home/profile2.png" alt=""></a>
+                                <a href="#"><img src="${CTPATH}/images/home/profile2.png" alt=""></a>
                             </div>
                             <div class="media-body">
                                 <blockquote>Capicola nisi flank sed minim sunt aliqua rump pancetta leberkas venison eiusmod.</blockquote>
@@ -204,7 +164,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="contact-info bottom">
-                        <h2>Contacts</h2>
+                        <h2>关于我们</h2>
                         <address>
                             E-mail: <a href="mailto:someone@example.com">email@email.com</a> <br>
                             Phone: +1 (123) 456 7890 <br>

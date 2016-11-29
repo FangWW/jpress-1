@@ -197,17 +197,26 @@
 			</div>
 			</div>
 			</#if>
-		</#list> 
-		
-		<ul class="x-page">
-			<@pagination>
+		</#list>
+		<div class="portfolio-pagination">
+			<ul class="pagination">
+				<@pagination>
 				<#list pages as page>
-				<li class="${page.style!}">
-					<a href="${page.url!}">${page.text!}</a>
-				</li>
+					<li class="${page.style!}"><a href="${page.url!}">${page.text!}</a></li>
 				</#list>
-			</@pagination>
-		</ul>
+				</@pagination>
+			</ul>
+		</div>
+
+		<!--<ul class="x-page">-->
+			<!--<@pagination>-->
+				<!--<#list pages as page>-->
+				<!--<li class="${page.style!}">-->
+					<!--<a href="${page.url!}">${page.text!}</a>-->
+				<!--</li>-->
+				<!--</#list>-->
+			<!--</@pagination>-->
+		<!--</ul>-->
 		
 		</@jp.indexPage>
 		
