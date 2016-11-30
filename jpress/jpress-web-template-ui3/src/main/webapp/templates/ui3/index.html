@@ -4,9 +4,9 @@
 	<!-- -->
 	<div class="x-pull-left x-layout-73 blog-sm-left">
 
-		<@jp.indexPage module="article"> 
-		
-		<#if page.isFirstPage() > 
+		<@jp.indexPage module="article">
+
+		<#if page.isFirstPage() >
 		<@jp.contents flag="hot" module="article" count="3" >
 			<div class="x-layout-100 clearfix" style="height:260px;">
 	           	<#list contents as content>
@@ -219,11 +219,11 @@
 		<!--</ul>-->
 		
 		</@jp.indexPage>
-		
+
 	</div>
 	<!-- -->
 	<div class="x-pull-right x-layout-25 blog-sm-right">
-		<!--<#include "_searcher_box.html"/> -->
+		<#include "_searcher_box.html"/>
 		<#include "_content_box1.html"/> 
 		<#include "_content_box2.html"/> 
 		<#include "_tags_box.html"/>
