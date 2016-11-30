@@ -1,47 +1,78 @@
 <#include "_layout.html"/> 
 <@layout>
-<div class="x-pc-width clearfix x-margin-top-20 x-margin-bottom-60">
-	<!-- -->
-		<div class="x-white-box">
-			<h3 class="x-box-title">
-				用户注册
-				<span class="x-title-border"></span>
-			</h3>
-			<form action="${CPATH}/user/doRegister" method="post">
+
+<div class="container margin-bottom">
+	<div class="col-sm-4">
+		<h2>用户注册</h2>
+		<form method="post"  action="${CPATH}/user/doRegister">
 			<input type="hidden" name="goto" value="${goto!}">
-			<div class="clearfix login-box">
-				<p class="x-pull-left x-layout-20 login-box-title">用户名：</p>
-				<p class="x-pull-left x-layout-80"><input type="text" name="username"></p>
+			<div class="form-group">
+				<input type="text" name="username" class="form-control" required="required" placeholder="用户名">
 			</div>
-			<div class="clearfix login-box">
-				<p class="x-pull-left x-layout-20 login-box-title">邮箱：</p>
-				<p class="x-pull-left x-layout-80"><input type="text" name="email"></p>
+			<div class="form-group">
+				<input type="text" name="email" class="form-control" required="required" placeholder="邮箱">
 			</div>
-			<div class="clearfix login-box">
-				<p class="x-pull-left x-layout-20 login-box-title">密码：</p>
-				<p class="x-pull-left x-layout-80"><input type="password" name="password"></p>
+			<div class="form-group">
+				<input type="password" name="password" class="form-control" required="required" placeholder="密码">
 			</div>
-			<div class="clearfix login-box">
-				<p class="x-pull-left x-layout-20 login-box-title">确认密码：</p>
-				<p class="x-pull-left x-layout-80"><input type="password" name="confirm_password"></p>
+			<div class="form-group">
+				<input type="password" name="confirm_password" class="form-control" required="required" placeholder="确认密码">
 			</div>
-			
-			<div class="clearfix login-box">
-				<p class="x-pull-left x-layout-20 login-box-title">验证码：</p>
-				<p class="x-pull-left x-layout-80"><input type="text" name="_register_captcha"></p>
+			<div class="form-group">
+				<input type="_register_captcha" name="_register_captcha" class="form-control" required="required" placeholder="验证码">
 			</div>
-			<div class="clearfix jblog-captcha">
+			<div class="form-group">
 				<img cdn-exclude src="${CPATH}/captcha" onclick="this.src='${CPATH}/captcha?d='+Math.random();" >
 			</div>
-			
-			<div class="clearfix login-button-box">
-				<input type="submit" value="注册">
+			<div class="form-group">
+				<input type="submit" class="btn btn-submit" value="注册">
 			</div>
-			</form>
-			<div class=" login-button-box">
-				<p><img src="${CTPATH}/assets/images/qq.jpg"> <a href="${CPATH}/oauth/qq?goto=${goto!}">QQ登录</a></p>
-				<p><img src="${CTPATH}/assets/images/oschina.jpg"> <a href="${CPATH}/oauth/oschina?goto=${goto!}">OSCHINA登录</a></p>
+			<div class="form-group">
+				<ul class="nav nav-pills">
+					<li><a href="${CPATH}/oauth/qq?goto=${goto!}"><i class="fa fa-qq"></i>QQ登录</a></li>
+					<li><a href="${CPATH}/oauth/weixin?goto=${goto!}"><i class="fa fa-weixin"></i>微信登录</a></li>
+					<li><a href="${CPATH}/oauth/weibo?goto=${goto!}"><i class="fa fa-weibo"></i>微博登录</a></li>
+				</ul>
 			</div>
-		</div>
+		</form>
+	</div>
 </div>
+<!--<div class="x-pc-width clearfix x-margin-top-20 x-margin-bottom-60">-->
+	<!--&lt;!&ndash; &ndash;&gt;-->
+			<!--<form action= method="post">-->
+			<!--<div class="clearfix login-box">-->
+				<!--<p class="x-pull-left x-layout-20 login-box-title">用户名：</p>-->
+				<!--<p class="x-pull-left x-layout-80"><input type="text" name="username"></p>-->
+			<!--</div>-->
+			<!--<div class="clearfix login-box">-->
+				<!--<p class="x-pull-left x-layout-20 login-box-title">邮箱：</p>-->
+				<!--<p class="x-pull-left x-layout-80"><input type="text" name="email"></p>-->
+			<!--</div>-->
+			<!--<div class="clearfix login-box">-->
+				<!--<p class="x-pull-left x-layout-20 login-box-title">密码：</p>-->
+				<!--<p class="x-pull-left x-layout-80"><input type="password" name="password"></p>-->
+			<!--</div>-->
+			<!--<div class="clearfix login-box">-->
+				<!--<p class="x-pull-left x-layout-20 login-box-title">确认密码：</p>-->
+				<!--<p class="x-pull-left x-layout-80"><input type="password" name="confirm_password"></p>-->
+			<!--</div>-->
+			<!---->
+			<!--<div class="clearfix login-box">-->
+				<!--<p class="x-pull-left x-layout-20 login-box-title">验证码：</p>-->
+				<!--<p class="x-pull-left x-layout-80"><input type="text" name="_register_captcha"></p>-->
+			<!--</div>-->
+			<!--<div class="clearfix jblog-captcha">-->
+				<!--<img cdn-exclude src="${CPATH}/captcha" onclick="this.src='${CPATH}/captcha?d='+Math.random();" >-->
+			<!--</div>-->
+			<!---->
+			<!--<div class="clearfix login-button-box">-->
+				<!--<input type="submit" value="注册">-->
+			<!--</div>-->
+			<!--</form>-->
+			<!--<div class=" login-button-box">-->
+				<!--<p><img src="${CTPATH}/assets/images/qq.jpg"> <a href="${CPATH}/oauth/qq?goto=${goto!}">QQ登录</a></p>-->
+				<!--<p><img src="${CTPATH}/assets/images/oschina.jpg"> <a href="${CPATH}/oauth/oschina?goto=${goto!}">OSCHINA登录</a></p>-->
+			<!--</div>-->
+		<!--</div>-->
+<!--</div>-->
 </@layout>

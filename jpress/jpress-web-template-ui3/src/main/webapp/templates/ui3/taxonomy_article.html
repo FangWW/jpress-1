@@ -164,16 +164,26 @@
 			</div>
 			</#if>
 		</#list>
-		
-		<ul class="x-page">
-			<@pagination>
-				<#list pages as pi>
-				<li class="${pi.style!}">
-					<a href="${pi.url!}">${pi.text!}</a>
-				</li>
+
+		<div class="portfolio-pagination">
+			<ul class="pagination">
+				<@pagination>
+				<#list pages as page>
+					<li class="${page.style!}"><a href="${page.url!}">${page.text!}</a></li>
 				</#list>
 			</@pagination>
-		</ul>
+			</ul>
+		</div>
+
+		<!--<ul class="x-page">-->
+			<!--<@pagination>-->
+				<!--<#list pages as pi>-->
+				<!--<li class="${pi.style!}">-->
+					<!--<a href="${pi.url!}">${pi.text!}</a>-->
+				<!--</li>-->
+				<!--</#list>-->
+			<!--</@pagination>-->
+		<!--</ul>-->
 		</@jp.contentPage>
 	</div>
 	<!-- -->
