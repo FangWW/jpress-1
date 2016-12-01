@@ -88,15 +88,20 @@
                         <#else>
                             <li class="dropdown">
                         </#if>
-                            <a href="${menu.url!}">${menu.title!} <i class="fa fa-angle-down"></i></a>
+                            <a href="${menu.url!}">${menu.title!} <#if menu.hasChild()><i class="fa fa-angle-down"></i></#if></a>
+                                <#if menu.hasChild()>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a class="active" href="blog.html">Blog Default</a></li>
-                                    <li><a href="blogtwo.html">Timeline Blog</a></li>
-                                    <li><a href="blogone.html">2 Columns + Right Sidebar</a></li>
-                                    <li><a href="blogthree.html">1 Column + Left Sidebar</a></li>
-                                    <li><a href="blogfour.html">Blog Masonary</a></li>
-                                    <li><a href="blogdetails.html">Blog Details</a></li>
+                                    <#list menu as childmenu>
+                                        <#if menu.isActive() >
+                                            <!--<li>-->
+                                            <li class="dropdown active">
+                                                <#else>
+                                            <li class="dropdown">
+                                        </#if>
+                                        <a href="${menu.url!}">${menu.title!}</a></i>
+                                    </#list>
                                 </ul>
+                                </#if>
                             </li>
                         </li>
                     </#list>
@@ -108,7 +113,7 @@
                 <form role="form" action="${CPATH}/s">
                     <i class="fa fa-search"></i>
                     <div class="field-toggle">
-                        <input type="text" class="search-form" name="k" autocomplete="off" placeholder="Search" value="${keyword!}">
+                        <input type="text" class="search-form" name="k" autocomplete="off" placeholder="搜索" value="${keyword!}">
                     </div>
                 </form>
             </div>
