@@ -1,11 +1,9 @@
-<#include "_layout.html"/> 
+<#include "_layout.html"/>
 <@layout>
-<div class="x-pc-width clearfix x-margin-top-20 x-margin-bottom-20">
+<div class="container">
 	<!-- -->
-	<div class="x-pull-left x-layout-73 blog-sm-left">
-
+	<div class="col-md-9 col-sm-7">
 		<@jp.indexPage module="article">
-
 		<#if page.isFirstPage() >
 		<@jp.contents flag="hot" module="article" count="3" >
 			<div class="x-layout-100 clearfix" style="height:260px;">
@@ -21,7 +19,7 @@
 			          </a>
 			        </div>
 		        </div>
-				
+
 				<#else>
 				<div class="x-pull-right x-layout-28 sub-image-box ">
 					 <div class="yfh-banner-image">
@@ -39,191 +37,111 @@
 		</@jp.contents>
 		</#if>
 
-			<div class="single-blog single-column">
-				<div class="post-thumb">
-					<a href="blogdetails.html"><img src="${CTPATH}/images/blog/7.jpg" class="img-responsive" alt=""></a>
-					<div class="post-overlay">
-						<span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-					</div>
-				</div>
-				<div class="post-content overflow">
-					<h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-					<h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-					<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-					<a href="#" class="read-more">View More</a>
-					<div class="post-bottom overflow">
-						<ul class="nav navbar-nav post-nav">
-							<li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
-							<li><a href="#"><i class="fa fa-heart"></i>32 Love</a></li>
-							<li><a href="#"><i class="fa fa-comments"></i>3 Comments</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		<h1>上面是推荐</h1>
-
-		
 		<#list page.getList() as content>
+			<!--有封面的-->
 			<#if content.thumbnail ??>
-			<div class="x-white-box">
-			<div class="x-layout-100">
-				<p>
-					<a href="${content.url}">
-						<img src="${content.thumbnailByName('t1')!}" />
-					</a>
-				</p>
-			</div>
-			<h3 class="x-box-title x-padding-top-10">
-				<a class="x-a-active" href="${content.url}">${content.title}</a>
-				<span class="x-title-border"></span>
-			</h3>
-			<p class="x-box-summary">${content.summary}</p>
-			<div class="x-box-tags">
-				<p class="x-pull-left x-font-small x-font-grey">
-					<img class="x-small-avatar x-image-radus x-vertical-middle" src="${CPATH}${content.avatar!TPATH+'/assets/images/avatar.jpg'}" />
-					${content.nickname!}
-				</p>
-				<p class=" x-pull-left x-font-small x-font-grey">
-					<i class="fa fa-bars" aria-hidden="true"></i>
-					${content.getTaxonomyAsUrl('category')!'未分类'}
-				</p>
-				<p class=" x-pull-left x-font-small x-font-grey">
-					<i class="fa fa-clock-o" aria-hidden="true"></i>
-					${content.created?string("yyyy-MM-dd")}
-				</p>
-				<p class=" x-pull-left x-font-small x-font-grey x-sm-eye">
-					<i class="fa fa-eye" aria-hidden="true"></i>
-					${content.view_count!'0'}
-				</p>
-				<p class=" x-pull-left x-font-small x-font-grey">
-					<i class="fa fa-commenting-o" aria-hidden="true"></i>
-					${content.comment_count!'0'}
-				</p>
-			</div>
-			</div>
-			
-			<#elseif ((content.imageCount > 0) && (content.imageCount<3)) >
-			<div class="x-white-box clearfix">
-			<div class="x-layout-30 x-pull-left">
-				<p>
-					<a href="${content.url}">
-						<img class="x-image-size-11" src="${(content.firstImage)!}" />
-					</a>
-				</p>
-			</div>
-			<div class="x-layout-68 x-pull-right">
-				<h3 class="x-box-title ">
-					<a class="x-a-active" href="${content.url}">${content.title}</a>
-				</h3>
-				<p class="x-box-summary x-item-space-25 clearfix">
-				${content.summary}
-				</p>
-				<div class="x-box-tags">
-					<p >
-						<img class="x-small-avatar x-image-radus x-vertical-middle" src="${CPATH}${content.avatar!TPATH+'/assets/images/avatar.jpg'}" />
-						${content.nickname!}
-					</p>
-					<p >
-						<i class="fa fa-bars" aria-hidden="true"></i>
-						${content.getTaxonomyAsUrl('category')!'未分类'}
-					</p>
-					<p >
-						<i class="fa fa-clock-o" aria-hidden="true"></i>
-						${content.created?string("yyyy-MM-dd")}
-					</p>
-					<p >
-						<i class="fa fa-eye" aria-hidden="true"></i>
-						${content.view_count!'0'}
-					</p>
-					<p >
-						<i class="fa fa-commenting-o" aria-hidden="true"></i>
-						${content.comment_count!'0'}
-					</p>
+				<div class="single-blog single-column">
+					<div class="post-thumb">
+						<a href="${content.url}"><img src="${content.thumbnailByName('t1')!}" class="img-responsive" alt=""></a>
+						<div class="post-overlay">
+							<span class="uppercase"><a href="#">${content.viewCount!'0'}<br><small>Feb</small></a></span>
+						</div>
+					</div>
+					<div class="post-content overflow">
+						<h2 class="post-title bold"><a href="${content.url}">${content.title}</a></h2>
+						<h3 class="post-author"><a href="#">${content.nickname!}</a></h3>
+						<p>${content.summary}[...]</p>
+						<a href="${content.url}" class="read-more">查看更多</a>
+						<div class="post-bottom overflow">
+							<ul class="nav navbar-nav post-nav">
+								<li>${content.getTaxonomyAsUrl('category','><i class= "fa fa-tag" > </i')!'未分类'}</li>
+								<li><a href="#"><i class="fa fa-clock-o"></i>${content.created?string('yyyy-MM-dd')!}</a></li>
+								<li><a href="#"><i class="fa fa-eye"></i>${content.viewCount!'0'}</a></li>
+								<li><a href="#comment"><i class="fa fa-comments"></i>${content.commentCount!'0'}</a></li>
+							</ul>
+						</div>
+					</div>
 				</div>
-			</div>
-			</div>
-			
+				<!--一张图片-->
+			<#elseif ((content.imageCount > 0) && (content.imageCount<3)) >
+				<div class="single-blog single-column">
+					<div class="post-content overflow">
+							<div class="x-layout-30 x-pull-left x-layout-33-sudoku x-padding-5">
+							<p>
+								<a href="${content.url}">
+									<img class="x-image-size-11" src="${CTPATH}/images/portfolio/10.jpg" />
+								</a>
+							</p>
+						    </div>
+							<h2 class="post-title bold"><a href="${content.url}">${content.title}</a></h2>
+							<h3 class="post-author"><a href="#">${content.nickname!}</a></h3>
+							<p>${content.summary}[...]</p>
+							<a href="${content.url}" class="read-more">查看更多</a>
+						<div class="post-bottom overflow">
+							<ul class="nav navbar-nav post-nav">
+								<li>${content.getTaxonomyAsUrl('category','><i class= "fa fa-tag" > </i')!'未分类'}</li>
+								<li><a href="#"><i class="fa fa-clock-o"></i>${content.created?string('yyyy-MM-dd')!}</a></li>
+								<li><a href="#"><i class="fa fa-eye"></i>${content.viewCount!'0'}</a></li>
+								<li><a href="#comment"><i class="fa fa-comments"></i>${content.commentCount!'0'}</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--三张-->
 			<#elseif (content.imageCount>3) >
-			<div class="x-white-box">
-				<h3 class="x-box-title">
-				<a class="x-a-active" href="${content.url}">${content.title}</a>
-				<span class="x-title-border"></span>
-			</h3>
-			<div class="x-layout-100">
-				<p class="x-pull-left x-layout-33-sudoku x-box-border x-padding-5">
-					<a href="${content.url}">
-						<img src="${(content.imageByIndex(0,'t2'))}" />
-					</a>
-				</p>
-				<p class="x-pull-left x-layout-33-sudoku x-box-border x-padding-5">
-					<a href="${content.url}">
-						<img src="${(content.imageByIndex(1,'t2'))}" />
-					</a>
-				</p>
-				<p class="x-pull-left x-layout-33-sudoku x-box-border x-padding-5">
-					<a href="${content.url}">
-						<img src="${(content.imageByIndex(2,'t2'))}" />
-					</a>
-				</p>
-			</div>
-			<p class="x-box-summary">${content.summary}</p>
-			<div class="x-box-tags">
-				<p >
-					<img class="x-small-avatar x-image-radus x-vertical-middle" src="${CPATH}${content.avatar!TPATH+'/assets/images/avatar.jpg'}" />
-					${content.nickname!}
-				</p>
-				<p >
-					<i class="fa fa-bars" aria-hidden="true"></i>
-					${content.getTaxonomyAsUrl('category')!'未分类'}
-				</p>
-				<p >
-					<i class="fa fa-clock-o" aria-hidden="true"></i>
-					${content.created?string("yyyy-MM-dd")}
-				</p>
-				<p >
-					<i class="fa fa-eye" aria-hidden="true"></i>
-					${content.view_count!'0'}
-				</p>
-				<p >
-					<i class="fa fa-commenting-o" aria-hidden="true"></i>
-					${content.comment_count!'0'}
-				</p>
-			</div>
-			</div>
+				<div class="single-blog single-column">
+					<div class="post-content overflow">
+						<h2 class="post-title bold"><a href="${content.url}">${content.title}</a></h2>
+						<div class="x-layout-100">
+							<p class="x-pull-left x-layout-33-sudoku x-box-border x-padding-5">
+								<a href="${content.url}">
+									<img src="${(content.imageByIndex(0,'t2'))}" />
+								</a>
+							</p>
+							<p class="x-pull-left x-layout-33-sudoku x-box-border x-padding-5">
+								<a href="${content.url}">
+									<img src="${(content.imageByIndex(1,'t2'))}" />
+								</a>
+							</p>
+							<p class="x-pull-left x-layout-33-sudoku x-box-border x-padding-5">
+								<a href="${content.url}">
+									<img src="${(content.imageByIndex(2,'t2'))}" />
+								</a>
+							</p>
+						</div>
+						<h3 class="post-author"><a href="#">${content.nickname!}</a></h3>
+						<p>${content.summary}[...]</p>
+						<a href="${content.url}" class="read-more">查看更多</a>
+						<div class="post-bottom overflow">
+							<ul class="nav navbar-nav post-nav">
+								<li>${content.getTaxonomyAsUrl('category','><i class= "fa fa-tag" > </i')!'未分类'}</li>
+								<li><a href="#"><i class="fa fa-clock-o"></i>${content.created?string('yyyy-MM-dd')!}</a></li>
+								<li><a href="#"><i class="fa fa-eye"></i>${content.viewCount!'0'}</a></li>
+								<li><a href="#comment"><i class="fa fa-comments"></i>${content.commentCount!'0'}</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--默认-->
 			<#else>
-			<div class="x-white-box">
-			<h3 class="x-box-title">
-				<a class="x-a-active" href="${content.url}">${content.title}</a>
-				<span class="x-title-border"></span>
-			</h3>
-			<p class="x-box-summary">${content.summary}</p>
-			<div class="x-box-tags">
-				<p >
-					<img class="x-small-avatar x-image-radus x-vertical-middle" src="${CPATH}${content.avatar!TPATH+'/assets/images/avatar.jpg'}" />
-					${content.nickname!}
-				</p>
-				<p >
-					<i class="fa fa-bars" aria-hidden="true"></i>
-					${content.getTaxonomyAsUrl('category')!'未分类'}
-				</p>
-				<p >
-					<i class="fa fa-clock-o" aria-hidden="true"></i>
-					${content.created?string("yyyy-MM-dd")}
-				</p>
-				<p >
-					<i class="fa fa-eye" aria-hidden="true"></i>
-					${content.view_count!'0'}
-				</p>
-				<p >
-					<i class="fa fa-commenting-o" aria-hidden="true"></i>
-					${content.comment_count!'0'}
-				</p>
-			</div>
-			</div>
+				<div class="single-blog single-column">
+					<div class="post-content overflow">
+						<h2 class="post-title bold"><a href="${content.url}">${content.title}</a></h2>
+						<h3 class="post-author"><a href="#">${content.nickname!}</a></h3>
+						<p>${content.summary}[...]</p>
+						<a href="${content.url}" class="read-more">查看更多</a>
+						<div class="post-bottom overflow">
+								<ul class="nav navbar-nav post-nav">
+									<li>${content.getTaxonomyAsUrl('category','><i class= "fa fa-tag" > </i')!'未分类'}</li>
+									<li><a href="#"><i class="fa fa-clock-o"></i>${content.created?string('yyyy-MM-dd')!}</a></li>
+									<li><a href="#"><i class="fa fa-eye"></i>${content.viewCount!'0'}</a></li>
+									<li><a href="#comment"><i class="fa fa-comments"></i>${content.commentCount!'0'}</a></li>
+								</ul>
+						</div>
+					</div>
+				</div>
 			</#if>
 		</#list>
-
-
 
 		<div class="portfolio-pagination">
 			<ul class="pagination">
@@ -235,24 +153,14 @@
 			</ul>
 		</div>
 
-		<!--<ul class="x-page">-->
-			<!--<@pagination>-->
-				<!--<#list pages as page>-->
-				<!--<li class="${page.style!}">-->
-					<!--<a href="${page.url!}">${page.text!}</a>-->
-				<!--</li>-->
-				<!--</#list>-->
-			<!--</@pagination>-->
-		<!--</ul>-->
-		
 		</@jp.indexPage>
 
 	</div>
 	<!-- -->
-	<div class="x-pull-right x-layout-25 blog-sm-right">
+<div class="col-md-3 col-sm-5">
 		<#include "_ad_box.html"/>
-		<#include "_content_box1.html"/> 
-		<#include "_content_box2.html"/> 
+		<#include "_content_box1.html"/>
+		<#include "_content_box2.html"/>
 		<#include "_tags_box.html"/>
 	</div>
 </div>

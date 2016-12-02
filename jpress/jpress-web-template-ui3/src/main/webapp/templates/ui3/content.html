@@ -95,18 +95,15 @@ function reply(id){
                                                 </div>
                                         </form>
                                     </#if>
-
                                     <@jp.commentPage pageSize="10">
                                     <#if page ??>
                                         <h2 class="bold">评论 ${page.totalRow!}条</h2>
                                             <ul class="media-list">
                                                 <#list page.getList() as comment>
-
                                                     <li class="media">
                                                         <div class="post-comment">
                                                             <a class="pull-left" href="#">
                                                                 <img class="media-object"  height="80" width="80" src="${CPATH}${comment.avatar!TPATH+'/assets/images/avatar.jpg'}" alt="">
-                                                                <!--<img class="media-object" src="${CPATH}${comment.avatar!TPATH+'/assets/images/avatar.jpg'}" alt="">-->
                                                             </a>
                                                             <div class="media-body">
                                                                 <span><i class="fa fa-user"></i> <a href="#">${comment.author!}</a></span>
