@@ -78,26 +78,21 @@ function reply(id){
                                             <input type="hidden" id="parent_id" name="parent_id" >
                                                 <h3> 发表评论 </h3>
                                                 <div class="x-layout-100 clearfix">
-
                                                     <textarea name="text" id="message" required="required" class="form-control" rows="5" placeholder="评论..."></textarea>
-                                                    <!--<textarea name="text" class="x-layout-100 x-border-grey x-box-border x-padding-5 x-item-space-8 body-bacground" placeholder="说点什么吧..."></textarea>-->
                                                 </div>
+                                            <div class="x-layout-100 clearfix login-box ">
                                                 <#if OPTION('comment_need_captcha') ?? && OPTION('comment_need_captcha')=='true'>
-                                                    <div class="x-layout-100 clearfix login-box ">
                                                         <p class="x-pull-left x-layout-10 login-box-title">验证码：</p>
-                                                        <p class="x-pull-left x-layout-20"><input type="text" name="comment_captcha"></p>
+                                                        <p class="x-pull-left x-layout-20"><input type="text" name="comment_captcha"  required="required" class="form-control" rows="1"></p>
                                                         <p class="x-pull-left x-layout-60"><img cdn-exclude src="${CPATH}/captcha" onclick="this.src='${CPATH}/captcha?d='+Math.random();" ></p>
-                                                    </div>
                                                 </#if>
-                                                <div class="x-layout-100 clearfix">
                                                     <button type="submit" class="btn btn-primary x-border-none pull-right x-margin-top-5">发表评论</button>
-                                                    <!--<button type="submit" class="x-button-primary x-border-none pull-right x-margin-top-5"></button>-->
                                                 </div>
                                         </form>
                                     </#if>
                                     <@jp.commentPage pageSize="10">
                                     <#if page ??>
-                                        <h2 class="bold">评论 ${page.totalRow!}条</h2>
+                                        <h3 class="bold">评论 ${page.totalRow!}条</h3>
                                             <ul class="media-list">
                                                 <#list page.getList() as comment>
                                                     <li class="media">
