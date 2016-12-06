@@ -3,12 +3,12 @@
 	<infos>
 		<title>UI3</title>
 		<id>UI3</id>
-		<description>UI3是JPress内置的博客模板，后续会持续升级。</description>
-		<author>jpress</author>
-		<authorWebsite>http://www.jpress.io</authorWebsite>
+		<description>UI3 盘子酱主题</description>
+		<author>盘子酱</author>
+		<authorWebsite>http://www.panzijiang.com</authorWebsite>
 		<version>v1.0</version>
 		<versionCode>1</versionCode>
-		<updateUrl>http://www.jpress.io</updateUrl>
+		<updateUrl>http://www.panzijiang.com</updateUrl>
 	</infos>
 
 	<module title="文章" name="article" list="所有文章" add="撰写文章" comment="评论">
