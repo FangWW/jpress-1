@@ -6,7 +6,7 @@
 		<@jp.indexPage module="article">
 		<#if page.isFirstPage() >
 		<@jp.contents flag="hot" module="article" count="3" >
-			<div class="x-layout-100 clearfix" style="height:260px;">
+			<div class="x-layout-100 clearfix x-margin-top-20 x-margin-bottom-10" style="height:260px;">
 	           	<#list contents as content>
 	           	<#if content?is_first >
 				<div class="x-pull-left x-layout-70 image-box">
@@ -44,11 +44,11 @@
 					<div class="post-thumb">
 						<a href="${content.url}"><img src="${content.thumbnailByName('t1')!}" class="img-responsive" alt=""></a>
 						<div class="post-overlay">
-							<span class="uppercase"><a href="#">${content.viewCount!'0'}<br><small>Feb</small></a></span>
+							<span class="uppercase"><a href="#"><small>推荐</small></a></span>
 						</div>
 					</div>
 					<div class="post-content overflow">
-						<h2 class="post-title bold"><a href="${content.url}">${content.title}</a></h2>
+						<h3 class="post-title bold"><a href="${content.url}">${content.title}</a></h3>
 						<h3 class="post-author"><a href="#">${content.nickname!}</a></h3>
 						<p>${content.summary}[...]</p>
 						<a href="${content.url}" class="read-more">查看更多</a>
@@ -69,11 +69,11 @@
 							<div class="x-layout-30 x-pull-left x-layout-33-sudoku x-padding-5">
 							<p>
 								<a href="${content.url}">
-									<img class="x-image-size-11" src="${CTPATH}/images/portfolio/10.jpg" />
+									<img class="x-image-size-11" src="${(content.firstImage)!}" />
 								</a>
 							</p>
 						    </div>
-							<h2 class="post-title bold"><a href="${content.url}">${content.title}</a></h2>
+							<h3 class="post-title bold"><a href="${content.url}">${content.title}</a></h3>
 							<h3 class="post-author"><a href="#">${content.nickname!}</a></h3>
 							<p>${content.summary}[...]</p>
 							<a href="${content.url}" class="read-more">查看更多</a>
@@ -91,7 +91,7 @@
 			<#elseif (content.imageCount>3) >
 				<div class="single-blog single-column">
 					<div class="post-content overflow">
-						<h2 class="post-title bold"><a href="${content.url}">${content.title}</a></h2>
+						<h3 class="post-title bold"><a href="${content.url}">${content.title}</a></h3>
 						<div class="x-layout-100">
 							<p class="x-pull-left x-layout-33-sudoku x-box-border x-padding-5">
 								<a href="${content.url}">
@@ -126,7 +126,7 @@
 			<#else>
 				<div class="single-blog single-column">
 					<div class="post-content overflow">
-						<h2 class="post-title bold"><a href="${content.url}">${content.title}</a></h2>
+						<h3 class="post-title bold"><a href="${content.url}">${content.title}</a></h3>
 						<h3 class="post-author"><a href="#">${content.nickname!}</a></h3>
 						<p>${content.summary}[...]</p>
 						<a href="${content.url}" class="read-more">查看更多</a>
