@@ -85,7 +85,7 @@ function reply(id){
                                     </#if>
                                     <@jp.commentPage pageSize="10">
                                     <#if page ??>
-                                        <h3 class="bold">评论 ${page.totalRow!}条</h3>
+                                        <h3 class="bold" id="clist">评论 ${page.totalRow!}条</h3>
                                             <ul class="media-list">
                                                 <#list page.getList() as comment>
                                                     <li class="media">

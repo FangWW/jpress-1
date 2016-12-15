@@ -21,12 +21,12 @@
   <link rel="shortcut icon" href="${CTPATH}/images/ico/favicon.ico">
 
   <link rel="stylesheet" href="${CTPATH}/assets/css/app.css"/>
-  <link rel="stylesheet" href="${CTPATH}/assets/mediaelement/mediaelementplayer.css" />
+  <!--<link rel="stylesheet" href="${CTPATH}/assets/mediaelement/mediaelementplayer.css" />-->
 
    <link href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
    <link href="${CTPATH}/css/font-awesome.min.css" rel="stylesheet">
-   <link href="${CTPATH}/css/lightbox.css" rel="stylesheet">
-   <link href="${CTPATH}/css/animate.min.css" rel="stylesheet">
+   <!--<link href="${CTPATH}/css/lightbox.css" rel="stylesheet">-->
+   <!--<link href="${CTPATH}/css/animate.min.css" rel="stylesheet">-->
    <link href="${CTPATH}/css/main.css" rel="stylesheet">
    <link href="${CTPATH}/css/responsive.css" rel="stylesheet">
 
@@ -45,7 +45,6 @@
             <div class="col-sm-12 overflow">
                 <div class="social-icons pull-right">
                     <ul class="nav nav-pills">
-                        <!--<li><a href=""><i class="fa fa-facebook"></i></a></li>-->
                         <li><a  target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=5f0eeb1dca0d135584f0400e6b0707725f2e16fe638695691bd1ba2aff87f603"><i class="fa fa-qq"></i></a></li>
                         <li><a  target="_blank" href=""><i class="fa fa-wechat"></i></a></li>
                         <li><a  target="_blank" href=""><i class="fa fa-weibo"></i></a></li>
@@ -83,7 +82,6 @@
                     <@jp.menus>
                     <#list menus as menu>
                         <#if menu.isActive() >
-                            <!--<li>-->
                             <li class="dropdown active">
                         <#else>
                             <li class="dropdown">
@@ -93,7 +91,6 @@
                                 <ul role="menu" class="sub-menu">
                                     <#list menu as childmenu>
                                         <#if menu.isActive() >
-                                            <!--<li>-->
                                             <li class="dropdown active">
                                                 <#else>
                                             <li class="dropdown">
@@ -122,7 +119,6 @@
 </header>
     <div class="x-layout-100 jblog-link-logo"></div>
 <#nested>
-
     <footer id="footer">
         <div class="container">
             <div class="row">
@@ -184,16 +180,12 @@ ${OPTION('jpblog_statistical_code')!}
   <!--<script src="${CTPATH}/assets/js/jquery-2.1.1.min.js"></script>-->
   <script src="${CTPATH}/assets/mediaelement/mediaelement-and-player.min.js"></script>
 
-
     <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${CTPATH}/js/lightbox.min.js"></script>
+    <!--<script type="text/javascript" src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <!--<script type="text/javascript" src="${CTPATH}/js/lightbox.min.js"></script>-->
     <script type="text/javascript" src="${CTPATH}/js/wow.min.js"></script>
     <script type="text/javascript" src="${CTPATH}/js/main.js"></script>
-
-    <script type="text/javascript">
 <@script />
-</script>
 </body>
 </html>
 </#macro>
