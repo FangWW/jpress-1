@@ -15,19 +15,19 @@
  */
 package io.jpress.core;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.jfinal.handler.Handler;
 import com.jfinal.kit.HandlerKit;
-
 import io.jpress.Consts;
 import io.jpress.install.InstallUtils;
 import io.jpress.model.query.OptionQuery;
 import io.jpress.router.RouterManager;
 import io.jpress.template.TemplateManager;
+import io.jpress.ui.freemarker.tag.AncientPoetryTag;
 import io.jpress.ui.freemarker.tag.MenusTag;
 import io.jpress.utils.FileUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class JHandler extends Handler {
 
@@ -36,7 +36,7 @@ public class JHandler extends Handler {
 		if (target.startsWith("/websocket")) {
 			return;
 		}
-		
+
 		String CPATH = request.getContextPath();
 		request.setAttribute("REQUEST", request);
 		request.setAttribute("CPATH", CPATH);
@@ -103,6 +103,8 @@ public class JHandler extends Handler {
 	}
 
 	private void setGlobalAttrs(HttpServletRequest request) {
+
+		request.setAttribute(AncientPoetryTag.TAG_NAME, AncientPoetryTag.getAn());
 
 		request.setAttribute(MenusTag.TAG_NAME, new MenusTag(request));
 
