@@ -15,13 +15,9 @@
  */
 package io.jpress.front.controller;
 
-import java.math.BigInteger;
-import java.util.Date;
-
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.ActionKey;
-
 import io.jpress.Consts;
 import io.jpress.core.BaseFrontController;
 import io.jpress.interceptor.UCodeInterceptor;
@@ -35,6 +31,9 @@ import io.jpress.ui.freemarker.tag.UserContentPageTag;
 import io.jpress.utils.CookieUtils;
 import io.jpress.utils.EncryptUtils;
 import io.jpress.utils.StringUtils;
+
+import java.math.BigInteger;
+import java.util.Date;
 
 @RouterMapping(url = Consts.ROUTER_USER)
 @Before(UserInterceptor.class)
@@ -116,7 +115,7 @@ public class UserController extends BaseFrontController {
 					gotoUrl = StringUtils.urlRedirect(gotoUrl);
 					redirect(gotoUrl);
 				} else {
-					redirect(Consts.ROUTER_USER_CENTER);
+					redirect("/");
 				}
 			}
 		} else {

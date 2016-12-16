@@ -49,10 +49,9 @@
                         <li><a  target="_blank" href=""><i class="fa fa-wechat"></i></a></li>
                         <li><a  target="_blank" href=""><i class="fa fa-weibo"></i></a></li>
                         <#if USER??>
-                            <li><a href="${CPATH}/user/center.html"><i class=""><button type="button" class="btn btn-xs btn-primary">欢迎:${USER.nickname!USER.username}</button></i></a></li>
+                            <li><a href="${CPATH}/user/center.html"><i class=""><button type="button" class="btn btn-xs btn-primary"><i class="fa fa-user"></i>    ${USER.nickname!USER.username}   </button></i></a></li>
                             <#else>
-                            <li><a href="${CPATH}/user/login.html"><i class=""><button type="button" class="btn btn-xs btn-primary">登陆</button></i></a></li>
-                            <li><a href="${CPATH}/user/register.html"><i class=""><button type="button" class="btn btn-xs btn-success">注册</button></i></a></li>
+                            <li><a href="${CPATH}/user/login.html"><i class=""><button type="button" class="btn btn-xs btn-primary"><i class="fa fa-align-left"></i>      登陆</button></i></a></li>
                         </#if>
                     </ul>
                 </div>
