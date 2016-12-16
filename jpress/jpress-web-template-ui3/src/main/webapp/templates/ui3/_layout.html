@@ -48,6 +48,12 @@
                         <li><a  target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=5f0eeb1dca0d135584f0400e6b0707725f2e16fe638695691bd1ba2aff87f603"><i class="fa fa-qq"></i></a></li>
                         <li><a  target="_blank" href=""><i class="fa fa-wechat"></i></a></li>
                         <li><a  target="_blank" href=""><i class="fa fa-weibo"></i></a></li>
+                        <#if USER??>
+                            <li><a href="${CPATH}/user/center.html"><i class=""><button type="button" class="btn btn-xs btn-primary">欢迎:${USER.nickname!USER.username}</button></i></a></li>
+                            <#else>
+                            <li><a href="${CPATH}/user/login.html"><i class=""><button type="button" class="btn btn-xs btn-primary">登陆</button></i></a></li>
+                            <li><a href="${CPATH}/user/register.html"><i class=""><button type="button" class="btn btn-xs btn-success">注册</button></i></a></li>
+                        </#if>
                     </ul>
                 </div>
             </div>
@@ -172,7 +178,6 @@
             </div>
         </div>
     </footer>
-
 <div style="display: none;">
 ${OPTION('jpblog_statistical_code')!}
 </div>
@@ -180,9 +185,12 @@ ${OPTION('jpblog_statistical_code')!}
   <!--<script src="${CTPATH}/assets/js/jquery-2.1.1.min.js"></script>-->
   <script src="${CTPATH}/assets/mediaelement/mediaelement-and-player.min.js"></script>
 
+
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["qzone","tsina","weixin","tqq","sqq","youdao","people","fbook","twi","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"5","bdPos":"right","bdTop":"124.28125"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
     <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <!--<script type="text/javascript" src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
-    <!--<script type="text/javascript" src="${CTPATH}/js/lightbox.min.js"></script>-->
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${CTPATH}/js/lightbox.min.js"></script>
     <script type="text/javascript" src="${CTPATH}/js/wow.min.js"></script>
     <script type="text/javascript" src="${CTPATH}/js/main.js"></script>
 <@script />
