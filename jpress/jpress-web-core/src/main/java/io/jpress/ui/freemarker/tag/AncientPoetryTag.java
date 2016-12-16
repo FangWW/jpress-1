@@ -33,6 +33,8 @@ public class AncientPoetryTag extends JTag {
     }
 
     public void init() {
+        list.add(new An("你我相逢在黑夜的海上。 你有你的，我有我的，方向。 你记得也好。 最好你忘掉。 在这交会时互放的光亮。", "徐志摩"));
+        list.add(new An("复前行，欲穷其林。 林尽水源，便得一山，山有小口，仿佛若有光。", "桃花源记"));
         list.add(new An("幸有我来山未孤。", "丰子恺"));
         list.add(new An("掬水月在手，弄花香满衣。", "于良史"));
         list.add(new An("留得残荷听雨声。", "李商隐"));
