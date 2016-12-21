@@ -1,12 +1,20 @@
 <#include "_layout.html"/> <@layout>
 <div class="x-pc-width clearfix x-margin-top-20 x-margin-bottom-120">
-    <!-- -->
-    <div class="x-white-box">
-        <div class="clearfix login-box">
-            欢迎${USER.nickname!USER.username},进入用户中...
-            <a href="${CPATH}/user/logout?ucode=${ucode}">
-                <button type="button" class="btn btn-sm btn-default">退出</button>
-            </a>
+    <div class="col-sm-7 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <h2 class="bold">用户中心</h2>
+        <div class="row">
+            <div class="col-sm-5">
+                <img src="${USER.avatar}" class="img-responsive" alt="">
+            </div>
+            <div class="col-sm-7">
+                <h3 class="top-zero">欢迎 ${USER.nickname!USER.username}</h3>
+                <p>邮箱: ${USER.email!"未填写"}<br></p>
+                <p>手机: ${USER.telephone!"未填写"}<br></p>
+                <p>注册时间: ${USER.created!}<br></p>
+                <p>
+                    <button type="button" class="btn btn-sm btn-default">退出</button>
+                    <br></p>
+            </div>
         </div>
     </div>
 </div>
