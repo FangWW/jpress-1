@@ -61,6 +61,7 @@ jQuery(function($) {'use strict';
 	// Search
 	$('.fa-search').on('click', function() {
 		$('.field-toggle').fadeToggle(200);
+		$('.search-form').focus();
 	});
 
 	// Contact form
