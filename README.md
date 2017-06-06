@@ -1,5 +1,5 @@
 # JPress-project
-## 新建jpress主题,管理后台增加smzdm的爬虫功能
+## 新建jpress主题,自动适配PC端和移动端,管理后台增加smzdm的爬虫功能,如图:
 ### Mobile端主页
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～mobile.png "github")
 ### 文章类容
