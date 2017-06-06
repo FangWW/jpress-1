@@ -1,5 +1,5 @@
 # JPress-project
-## 新建jpress主题
+## 新建jpress主题,管理后台增加smzdm的爬虫功能
 ### 主页
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/%E7%9B%98%E5%AD%90%E9%85%B1%20%20%20%E5%98%BF%EF%BD%9E.png "github")
 ### 文章
