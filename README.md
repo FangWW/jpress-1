@@ -1,29 +1,29 @@
 # JPress-project
 ## 新建jpress主题,自动适配PC端和移动端,管理后台增加smzdm的爬虫功能,如图:
-### Mobile端主页
+### #Mobile端主页
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～mobile.png "github")
-### 文章类容
+### #文章类容
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/PEST、SWOT、五力模型、波士顿矩%20%20%20嘿～.png "github")
-### 关于
+### #关于
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～mobile-about.png "github")
 
-### PC端主页
+### #PC端主页
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/%E7%9B%98%E5%AD%90%E9%85%B1%20%20%20%E5%98%BF%EF%BD%9E.png "github")
-### 文章
+### #文章
 ![github](https://github.com/FangWW/jpress-project/blob/master/jpress/2016%E5%B9%B4%20%E6%8E%A8%E8%8D%90%20%E6%9C%80%E5%85%A8%20%E9%9D%9E%E6%B7%B1%E6%88%B7%E5%BA%94%E5%B1%8A%E7%94%9F%20%E4%B8%AA%E4%BA%BA%E5%8A%9E%E7%90%86%E6%B7%B1%E6%88%B7%E6%B5%81%E7%A8%8B%20%20%20%E5%98%BF%EF%BD%9Earticle.png?raw=true "github")
-### 登陆
+### #登陆
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～login.png "github")
-### 注册
+### #注册
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～reg.png "github")
-### 用户中心
+### #用户中心
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～center.png "github")
-### 搜索
+### #搜索
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～search.png "github")
-### 关于
+### #关于
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～about.png "github")
-### 联系
+### #联系
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～contact.png "github")
-### 404
+### #404
 ![github](https://raw.githubusercontent.com/FangWW/jpress-project/master/jpress/盘子酱%20%20%20嘿～404.png "github")
 
 
