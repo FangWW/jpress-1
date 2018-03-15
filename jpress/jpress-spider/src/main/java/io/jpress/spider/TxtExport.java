@@ -4,7 +4,7 @@ import java.io.*;
 
 public class TxtExport {
 
-    private static String path = "/Volumes/Data/XShop/";
+    private static String path = "/Volumes/Data/XShop/zzz/";
     private static String filenameTemp;
 
     public static void main(String[] args) throws IOException {

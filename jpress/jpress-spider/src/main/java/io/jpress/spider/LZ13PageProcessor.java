@@ -15,72 +15,80 @@ import java.util.List;
  * @since 0.5.1
  */
 public class LZ13PageProcessor implements PageProcessor, SpriderInterface {
-    //http://m.smzdm.com/search/ajax_search_list?article_date=2016-11-01+10%3A17%3A54&type=tag&search_key=%E7%A5%9E%E4%BB%B7%E6%A0%BC&channel=youhui
-    //http://m.smzdm.com/search/ajax_search_list?type=fenlei&search_key=gehuhuazhuang&channel=youhui&article_date=2016-11-02+15%3A25%3A36
     private Log logger = Log.getLog(getClass());
-
-    private Site site = Site.me().setRetryTimes(3).setSleepTime(1000*36).setRetrySleepTime(1000 * 60);
-    //private int count = 71;
-    private int count = 142;
+    private Site site = Site.me().setRetryTimes(3).setSleepTime(1000).setRetrySleepTime(1000 * 60);
+        private int count = 71;
+//    rivate int count = 142;
+//    private int count = 63;
     private Spider mSpider;
 
- //   private static final String list_url = "http://m.lz13.cn/lizhi/lizhiwenzhang-";
-   // private static final String detail_url = "http://m.lz13.cn/lizhiwenzhang/";
-    private static final String list_url = "http://m.lz13.cn/lizhi/jingdianyulu-";
-    private static final String detail_url = "http://m.lz13.cn/jingdianyulu/";
+        private static final String list_url = "http://m.lz13.cn/lizhi/lizhiwenzhang-";
+    private static final String detail_url = "http://m.lz13.cn/lizhiwenzhang/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/jingdianyulu-";
+//    private static final String detail_url = "http://m.lz13.cn/jingdianyulu/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/renshengganwu-";
+//    private static final String detail_url = "http://m.lz13.cn/renshengganwu/";
+
+
+
+//    private static final String detail_url = "http://m.lz13.cn/lizhiyanjiang/";
 
     @Override
     public void process(Page page) {
         synchronized (LZ13PageProcessor.class) {
-            try {  String url = page.getUrl().toString();
-            Html html = page.getHtml();
-            if (url != null && url.startsWith(list_url)) {
-//                List<String> detail = html.xpath("@div[@class='tablist newlist']/ul/li/a/@href|//div[@class='tablist newlist']/ul/li/a/text()").all();
-                List<String> list = html.xpath("//div[@class='tablist newlist']/ul/li/a/@href").all();
-                for (String s : list) {
+            try {
+                String url = page.getUrl().toString();
+                Html html = page.getHtml();
+                if (url != null && url.startsWith(list_url)) {
+                    List<String> list = html.xpath("//div[@class='tablist newlist']/ul/li/a/@href").all();
+                    for (String s : list) {
+                        page.addTargetRequest(s);
+                    }
+                    count--;
+                    if (count > 0) {
+                        page.addTargetRequest(getUrl());
+                    }
 
-                    page.addTargetRequest(s);
-                }
-                count--;
-                if (count>0){
-
-                    page.addTargetRequest(getUrl());
-                }
-
-            } else if (url != null && url.startsWith(detail_url)) {
-                List<String> list = html.xpath("//div[@class='headtitle']/h1/text()|//div[@class='headtitle']/p/a/text()|//div[@id='endtext']/p/text()").all();
+                } else if (url != null && url.startsWith(detail_url)) {
+                    List<String> list = html.xpath("//div[@class='headtitle']/h1/text()|//div[@class='headtitle']/p/a/text()|//div[@id='endtext']/p/allText()").all();
                     Statement statement = con.createStatement();
                     String sql = "SELECT * FROM chickensoup.article_info WHERE article_Name ='" + list.get(0) + "'";
                     ResultSet rs_exsit = statement.executeQuery(sql);
                     while (rs_exsit.next()) {
                         return;
                     }
-                    boolean has_author=list.get(3).contains("文/");
+                    boolean has_author = list.get(3).contains("文/");
                     String insert_info_sql =
-                            "INSERT INTO `chickensoup`.`article_info` (`article_Name`, `article_category`, `article_date`, `article_source`, `article_author`) VALUES ('" +
-                                    list.get(0) + "','" + list.get(1) + "', '', 'lz13', '" +
-                                    ( has_author?list.get(3) :"")+ "')";
+                            "INSERT INTO `chickensoup`.`article_info` (`article_Name`, `article_category`, `article_date`, `article_source`,`article_source_url`, `article_author`) VALUES ('" +
+                                    list.get(0) + "','" + list.get(1) + "', '', 'lz13', '" + url + "', '" +
+                                    (has_author ? list.get(3) : "") + "')";
                     statement.execute(insert_info_sql);
-               //     String sql = "SELECT * FROM chickensoup.article_info WHERE article_Name ='" + list.get(0) + "'";
                     ResultSet rs = statement.executeQuery(sql);
                     String id = null;
                     while (rs.next()) {
                         id = rs.getString("id");
                         break;
                     }
-                    for (int i = has_author?4:3; i < list.size(); i++) {
+                    for (int i = has_author ? 4 : 3; i < list.size(); i++) {
                         if (!con.isClosed()) {
+                            String s = "　　".concat(list.get(i).trim()
+                                    .replaceAll("\\(.*lz13.*\\)", "")
+                                    .replaceAll("（.*lz13.*）", "")
+                                    .replaceAll("\\(.*励志一生.*\\)", "")
+                                    .replaceAll("（.*励志一生.*）", "")
+                            );
                             String insert_line_sql =
                                     "INSERT INTO `chickensoup`.`article_detail` (`article_Id`, `article_line`) VALUES ('" +
-                                            id + "', '" + list.get(i) + "')";
+                                            id + "', '" + s + "')";
                             statement.execute(insert_line_sql);
                         }
                     }
 
 
-            }    } catch (SQLException e) {
-                    e.printStackTrace();
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
@@ -91,8 +99,15 @@ public class LZ13PageProcessor implements PageProcessor, SpriderInterface {
     }
 
     public static void main(String[] args) {
-//        Spider.create(new SMZDMPageProcessor()).addUrl("http://m.smzdm.com/p/6542544/").thread(1).run();
         new LZ13PageProcessor().spriderStart();
+//        String a = ("　　7、吸引我的男生样子就是顺眼就好" +
+//                "，然后他要聪（经典歌词 壹周立波）明，要有智慧。我希望他知道的东西是我" +
+//                "不知道的，就是说我们在聊天的时候，我可能在听他讲话的时候" +
+//                "，（m.lz13.cn 经典歌词 壹周立波）我不(哈哈哈哈lz13哈哈)一定知道他在讲什么，但我希" +
+//                "望可以学习，希望可以在爱情里面学习。")
+////                .replaceFirst("（.*lz13.*）", "");
+//                .replaceAll("\\(.*lz13.*\\)", "");
+//        System.out.println(a);
     }
 
     //声明Connection对象
@@ -191,6 +206,7 @@ public class LZ13PageProcessor implements PageProcessor, SpriderInterface {
 
     private String getUrl() {
         return list_url + count + ".html";
+//    return "http://m.lz13.cn/lizhiyanjiang/200901119180.html";
     }
 
     @Override

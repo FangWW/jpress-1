@@ -16,7 +16,7 @@ public class LZ13GeneraterMD {
     public void dealFile() {
         try {
             Statement statement = con.createStatement();
-            String sql = "SELECT * FROM chickensoup.article_info LIMIT 20";
+            String sql = "SELECT * FROM chickensoup.article_info LIMIT 4150";
             ResultSet rs_exsit = statement.executeQuery(sql);
             while (rs_exsit.next()) {
                 String article_Name = rs_exsit.getString("article_Name");
@@ -42,9 +42,9 @@ public class LZ13GeneraterMD {
                 ResultSet rs_detail = statement_detail.executeQuery(sql_detail);
                 while (rs_detail.next()) {
                     //sb.append("       ");
-                    String article_line = rs_detail.getString("article_line");
+                    String article_line = rs_detail.getString("article_line").trim();
                     if (article_line.contains("女孩")) {
-                        sb.append(article_line.replaceAll("女孩", "[女孩](http://baidu.com)")).append("\n\n");
+                        sb.append(article_line.replaceAll("女孩", "[女孩](http://chickensoup.top)")).append("\n\n");
                     } else {
                         sb.append(article_line).append("\n\n");
                     }
