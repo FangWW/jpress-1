@@ -16,7 +16,7 @@ public class LZ13GeneraterMD {
     public void dealFile() {
         try {
             Statement statement = con.createStatement();
-            String sql = "SELECT * FROM chickensoup.article_info LIMIT 4150";
+            String sql = "SELECT * FROM chickensoup.article_info LIMIT 5";
             ResultSet rs_exsit = statement.executeQuery(sql);
             while (rs_exsit.next()) {
                 String article_Name = rs_exsit.getString("article_Name");
@@ -32,6 +32,7 @@ public class LZ13GeneraterMD {
                         .append("date: ").append(article_date).append("\n")
                         .append("comments: true\n")
                         .append("categories: ").append(article_category).append("\n")
+                        .append("permalink: :categories/:title/\n")
                         .append("\n---\n")
                         .append("\n");
                 if (!TextUtils.isEmpty(article_author)) {
@@ -41,10 +42,14 @@ public class LZ13GeneraterMD {
                 String sql_detail = "SELECT * FROM chickensoup.article_detail where article_id =".concat(String.valueOf(Id));
                 ResultSet rs_detail = statement_detail.executeQuery(sql_detail);
                 while (rs_detail.next()) {
-                    //sb.append("       ");
+                    sb.append("　　");
                     String article_line = rs_detail.getString("article_line").trim();
-                    if (article_line.contains("女孩")) {
-                        sb.append(article_line.replaceAll("女孩", "[女孩](http://chickensoup.top)")).append("\n\n");
+                    if (article_line.contains("努力")) {
+                        sb.append(article_line.replaceAll("努力", "[努力](http://chickensoup.top)")).append("\n\n");
+                    } else if (article_line.contains("奋斗")) {
+                        sb.append(article_line.replaceAll("奋斗", "[奋斗](http://chickensoup.top)")).append("\n\n");
+                    } else if (article_line.contains("加油")) {
+                        sb.append(article_line.replaceAll("加油", "[加油](http://www.chickensoup.top)")).append("\n\n");
                     } else {
                         sb.append(article_line).append("\n\n");
                     }

@@ -17,18 +17,62 @@ import java.util.List;
 public class LZ13PageProcessor implements PageProcessor, SpriderInterface {
     private Log logger = Log.getLog(getClass());
     private Site site = Site.me().setRetryTimes(3).setSleepTime(1000).setRetrySleepTime(1000 * 60);
-        private int count = 71;
-//    rivate int count = 142;
+//            private int count = 71;
+//        private int count = 142;
 //    private int count = 63;
+//    private int count = 33;
+//    private int count = 42;
+//    private int count = 21;
+//    private int count = 20;
+//    private int count = 32;
+//    private int count = 80;
+ //   private int count = 22;
+//   private int count = 17;
+  //  private int count = 23;
+ //  private int count = 14;
+//    private int count = 11;
+//    private int count = 21;
+//    private int count = 16;
+    private int count = 5;
+//   private int count = 80;
     private Spider mSpider;
 
-        private static final String list_url = "http://m.lz13.cn/lizhi/lizhiwenzhang-";
-    private static final String detail_url = "http://m.lz13.cn/lizhiwenzhang/";
+//          private static final String list_url = "http://m.lz13.cn/lizhi/lizhiwenzhang-";
+//    private static final String detail_url = "http://m.lz13.cn/lizhiwenzhang/";
 //    private static final String list_url = "http://m.lz13.cn/lizhi/jingdianyulu-";
-//    private static final String detail_url = "http://m.lz13.cn/jingdianyulu/";
+//      private static final String detail_url = "http://m.lz13.cn/jingdianyulu/";
 //    private static final String list_url = "http://m.lz13.cn/lizhi/renshengganwu-";
 //    private static final String detail_url = "http://m.lz13.cn/renshengganwu/";
-
+//    private static final String list_url = "http://m.lz13.cn/lizhi/qingchunlizhi-";
+//    private static final String detail_url = "http://m.lz13.cn/qingchunlizhi/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/chenggonglizhi-";
+//    private static final String detail_url = "http://m.lz13.cn/chenggonglizhi/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/lizhigushi-";
+//    private static final String detail_url = "http://m.lz13.cn/lizhigushi/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/weirenchushi-";
+//    private static final String detail_url = "http://m.lz13.cn/weirenchushi/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/zhichanglizhi-";
+//    private static final String detail_url = "http://m.lz13.cn/zhichanglizhi/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/lizhiyanjiang-";
+  //  private static final String detail_url = "http://m.lz13.cn/lizhiyanjiang/";
+//  private static final String list_url = "http://m.lz13.cn/lizhi/jiatingjiaoyu-";
+  //  private static final String detail_url = "http://m.lz13.cn/jiatingjiaoyu/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/lizhirenwu-";
+//    private static final String detail_url = "http://m.lz13.cn/lizhirenwu/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/ganenlizhi-";
+  //  private static final String detail_url = "http://m.lz13.cn/ganenlizhi/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/daxueshenglizhi-";
+//    private static final String detail_url = "http://m.lz13.cn/daxueshenglizhi/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/lizhichuangye-";
+//    private static final String detail_url = "http://m.lz13.cn/lizhichuangye/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/weirenchushi-";
+//    private static final String detail_url = "http://m.lz13.cn/weirenchushi/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/jiaoxue-";
+//    private static final String detail_url = "http://m.lz13.cn/jiaoxue/";
+    private static final String list_url = "http://m.lz13.cn/lizhi/lizhijiaoyu-";
+    private static final String detail_url = "http://m.lz13.cn/lizhijiaoyu/";
+//    private static final String list_url = "http://m.lz13.cn/lizhi/lizhikouhao-";
+//    private static final String detail_url = "http://m.lz13.cn/lizhikouhao/";
 
 
 //    private static final String detail_url = "http://m.lz13.cn/lizhiyanjiang/";
@@ -51,6 +95,10 @@ public class LZ13PageProcessor implements PageProcessor, SpriderInterface {
 
                 } else if (url != null && url.startsWith(detail_url)) {
                     List<String> list = html.xpath("//div[@class='headtitle']/h1/text()|//div[@class='headtitle']/p/a/text()|//div[@id='endtext']/p/allText()").all();
+                    if (list.size() <= 6) {
+                        return;
+                    }
+                    con.setAutoCommit(false);
                     Statement statement = con.createStatement();
                     String sql = "SELECT * FROM chickensoup.article_info WHERE article_Name ='" + list.get(0) + "'";
                     ResultSet rs_exsit = statement.executeQuery(sql);
@@ -70,24 +118,30 @@ public class LZ13PageProcessor implements PageProcessor, SpriderInterface {
                         break;
                     }
                     for (int i = has_author ? 4 : 3; i < list.size(); i++) {
-                        if (!con.isClosed()) {
-                            String s = "　　".concat(list.get(i).trim()
-                                    .replaceAll("\\(.*lz13.*\\)", "")
+                        if (!con.isClosed()) {//"　　".concat
+                            String s = list.get(i).trim();//.replaceFirst("^　{2,5}", "");
+                            s = s.replaceAll("\\(.*lz13.*\\)", "")
                                     .replaceAll("（.*lz13.*）", "")
                                     .replaceAll("\\(.*励志一生.*\\)", "")
-                                    .replaceAll("（.*励志一生.*）", "")
-                            );
+                                    .replaceAll("（.*励志一生.*）", "").replaceAll("　", "").trim();
                             String insert_line_sql =
                                     "INSERT INTO `chickensoup`.`article_detail` (`article_Id`, `article_line`) VALUES ('" +
                                             id + "', '" + s + "')";
                             statement.execute(insert_line_sql);
                         }
                     }
-
-
+                    //关闭
+                    statement.close();
+                    con.commit();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                try {
+                    con.rollback();
+                    con.commit();
+                } catch (SQLException e1) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -100,14 +154,18 @@ public class LZ13PageProcessor implements PageProcessor, SpriderInterface {
 
     public static void main(String[] args) {
         new LZ13PageProcessor().spriderStart();
-//        String a = ("　　7、吸引我的男生样子就是顺眼就好" +
-//                "，然后他要聪（经典歌词 壹周立波）明，要有智慧。我希望他知道的东西是我" +
-//                "不知道的，就是说我们在聊天的时候，我可能在听他讲话的时候" +
-//                "，（m.lz13.cn 经典歌词 壹周立波）我不(哈哈哈哈lz13哈哈)一定知道他在讲什么，但我希" +
-//                "望可以学习，希望可以在爱情里面学习。")
-////                .replaceFirst("（.*lz13.*）", "");
-//                .replaceAll("\\(.*lz13.*\\)", "");
-//        System.out.println(a);
+////        String a = ("　　7、吸引我的男生样子就是顺眼就好" +
+////                "，然后他要聪（经典歌词 壹周立波）明，要有智慧。我希望他知道的东西是我" +
+////                "不知道的，就是说我们在聊天的时候，我可能在听他讲话的时候" +
+////                "，（m.lz13.cn 经典歌词 壹周立波）我不(哈哈哈哈lz13哈哈)一定知道他在讲什么，但我希" +
+////                "望可以学习，希望可以在爱情里面学习。")
+//////                .replaceFirst("（.*lz13.*）", "");
+////                .replaceAll("\\(.*lz13.*\\)", "");
+////        System.out.println(a);
+//
+//        String b = (" 　　 励志心得：每个人都有一定的安全区，你想跨越自己目前的成就，请不要画地自限，勇于接受挑战充实自我，你一定会发展得比你想像中的更好。 　　对于那些害怕危险的人，危险无处不在。 　　有一天，龙虾与寄居蟹在深海中相遇，寄居蟹看见龙虾正把自己的硬壳脱掉，只露出娇嫩的身躯。寄居蟹非常紧张的说：“龙虾，你怎可以　把唯一保护自己身躯的硬壳也放弃呢？难道你不怕有大鱼一口把你吃掉吗？以你现在的情况来看，连急流也会把你冲到岩石去，到时你不死才怪呢？”龙虾气定神闲地回答：“谢谢你的关心，但是你不了解，我们龙虾每次成长，都必须先脱掉旧壳，才能生长出更坚固的外壳，现在面对的危险，只是为了将来发展得更好而做出准备。”寄居蟹细心思量一下，自己整天只找可以避居的地方，而没有　想过如何令自己成长得更强壮，整天只活在别人的护荫之下，难怪永远都限制自" +
+//                "己的发展。 　　　").trim().replaceFirst("^　{2,5}", "");
+//        System.out.println(b.trim());
     }
 
     //声明Connection对象
@@ -206,7 +264,7 @@ public class LZ13PageProcessor implements PageProcessor, SpriderInterface {
 
     private String getUrl() {
         return list_url + count + ".html";
-//    return "http://m.lz13.cn/lizhiyanjiang/200901119180.html";
+//        return "http://m.lz13.cn/lizhiwenzhang/200901124826.html";
     }
 
     @Override
