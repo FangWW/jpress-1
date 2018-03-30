@@ -16,7 +16,8 @@ public class LZ13GeneraterMD {
     public void dealFile() {
         try {
             Statement statement = con.createStatement();
-            String sql = "SELECT * FROM chickensoup.article_info LIMIT 5";
+//            String sql = "SELECT * FROM chickensoup.article_info LIMIT 30000";
+            String sql = "SELECT * FROM chickensoup.article_info ";
             ResultSet rs_exsit = statement.executeQuery(sql);
             while (rs_exsit.next()) {
                 String article_Name = rs_exsit.getString("article_Name");
@@ -32,7 +33,7 @@ public class LZ13GeneraterMD {
                         .append("date: ").append(article_date).append("\n")
                         .append("comments: true\n")
                         .append("categories: ").append(article_category).append("\n")
-                        .append("permalink: :categories/:title/\n")
+//                        .append("permalink: :categories/:title/\n")
                         .append("\n---\n")
                         .append("\n");
                 if (!TextUtils.isEmpty(article_author)) {
