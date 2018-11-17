@@ -18,7 +18,7 @@ public class SpiderHandler {
     public static SpiderHandler getSpiderHandler() {
         if (mSpiderHandler == null) {
             mSpiderHandler = new SpiderHandler();
-            mSpiders_class.add(SMZDMPageProcessor.class);
+            mSpiders_class.add(BaiduGaokaoPageProcessor.class);
         }
         initSpiderInstand();
         return mSpiderHandler;

@@ -199,7 +199,7 @@ public class LZ13toWordPress {
         //驱动程序名
         String driver = "com.mysql.jdbc.Driver";
         //URL指向要访问的数据库名mydata
-        String url = "jdbc:mysql://localhost:3306/chickensoup?useUnicode=true&characterEncoding=utf-8";
+        String url = "jdbc:mysql://192.168.8.161:3306/chickensoup?useUnicode=true&characterEncoding=utf-8";
         //MySQL配置时的用户名
         String user = "root";
         //MySQL配置时的密码
